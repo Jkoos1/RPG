@@ -18,10 +18,14 @@ public:
 private:
     sf::RenderWindow window;
     std::map<std::string, std::unique_ptr<GameState>> states;
+    sf::Clock clock;
+    sf::Event event;
+
     GameState* currentState;
     SpriteManager spriteManager;
 
-    void processEvents();
+    const int FRAMERATE_LIMIT = 60;
+
     void update(float deltaTime);
     void render();
 };

@@ -11,14 +11,14 @@ class MenuState : public GameState {
 public:
     MenuState(Game& game);
 
-    void handleInput(sf::RenderWindow& window) override;
+    void handleEvent(const sf::Event& event) override;
     void update(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
 
 private:
     Game& game;
     std::vector<std::string> options;
-    int selectedOption;
     sf::Font font;
     std::vector<sf::Text> textOptions;
+    int selectedOption;
 };

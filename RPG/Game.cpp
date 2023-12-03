@@ -1,32 +1,22 @@
 #include "Game.h"
 
 Game::Game() : window(sf::VideoMode(800, 600), "RPG Game"), currentState(nullptr) {
+    window.setFramerateLimit(FRAMERATE_LIMIT);
     states["menu"] = std::make_unique<MenuState>(*this);
-    states["playing"] = std::make_unique<PlayingState>(spriteManager);
+    states["playing"] = std::make_unique<PlayingState>(spriteManager, window);
     states["paused"] = std::make_unique<PauseState>();
 
     currentState = states["menu"].get();
 }
 
 void Game::run() {
-    sf::Clock clock;
     while (window.isOpen()) {
+        while (window.pollEvent(event)) {
+            currentState->handleEvent(event);
+        }
         sf::Time dt = clock.restart();
-        currentState->handleInput(window);
         currentState->update(dt.asSeconds());
-        currentState->render(window);
-    }
-}
-
-void Game::processEvents() {
-    sf::Event event;
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-            window.close();
-        }
-        else {
-            currentState->handleInput(window);
-        }
+        render();
     }
 }
 
@@ -36,8 +26,8 @@ void Game::update(float deltaTime) {
 
 void Game::render() {
     window.clear();
-    window.display();
     currentState->render(window);  
+    window.display();
 }
 
 void Game::switchState(const std::string& stateName) {

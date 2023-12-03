@@ -1,26 +1,29 @@
 #include "Player.h"
 
-Player::Player() : x(0), y(0) {
+Player::Player(SpriteManager& spriteManager) : x(0), y(0) {
+    spriteManager.loadSpriteSheet("player", "assets/sprites/player.png", 32, 32);
+    sf::Sprite playerSprite = spriteManager.getTile("player", 0, 0);
+    this->sprite = playerSprite;
 }
 
 void Player::update(float deltaTime) {
-    sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+    sprite.setPosition(x, y);
 }
 
 void Player::moveUp() {
-    y -= 1;
+    y -= moveDistance;
 }
 
 void Player::moveDown() {
-    y += 1; 
+    y += moveDistance;
 }
 
 void Player::moveLeft() {
-    x -= 1;
+    x -= moveDistance;
 }
 
 void Player::moveRight() {
-    x += 1; 
+    x += moveDistance;
 }
 
 sf::Sprite& Player::getSprite() {

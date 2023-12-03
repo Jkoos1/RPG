@@ -10,12 +10,12 @@ public:
 
     void update(float deltaTime);
     void render(sf::RenderWindow& window);
-    void updatePlayer(float deltaTime);
 
 private:
     SpriteManager& spriteManager;
+    Player& player;
     std::vector<sf::Sprite> tiles;
-    // Additional world elements like entities, obstacles, etc.
-    sf::Sprite playerSprite;
-    Player player;
+    int tilesX = 0, tilesY = 0;
+    sf::Sprite tileSprite;
+    sf::View view;
 };

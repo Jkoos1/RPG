@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "SpriteManager.h"
 
 class Player {
 public:
-    Player();
+    Player(SpriteManager& spriteManager);
 
     void update(float deltaTime);
     void moveUp();
@@ -14,6 +15,7 @@ public:
     sf::Sprite& getSprite();
 
 private:
-    int x, y; 
+    float x, y; 
+    float moveDistance = 32.0f;
     sf::Sprite sprite;
 };
