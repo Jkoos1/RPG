@@ -15,10 +15,11 @@ public:
     void update(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
 
+    MenuState& operator=(const MenuState&) = delete;
 private:
     Game& game;
+    int selectedOption;
     std::vector<std::string> options;
     sf::Font font;
     std::vector<sf::Text> textOptions;
-    int selectedOption;
 };

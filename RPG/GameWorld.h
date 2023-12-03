@@ -11,6 +11,7 @@ public:
     void update(float deltaTime);
     void render(sf::RenderWindow& window);
 
+    GameWorld& operator=(const GameWorld&) = delete;
 private:
     SpriteManager& spriteManager;
     Player& player;

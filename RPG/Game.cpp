@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : window(sf::VideoMode(800, 600), "RPG Game"), currentState(nullptr) {
+Game::Game() : window(sf::VideoMode(800u, 600u), "RPG Game"), currentState(nullptr), event() {
     window.setFramerateLimit(FRAMERATE_LIMIT);
     states["menu"] = std::make_unique<MenuState>(*this);
     states["playing"] = std::make_unique<PlayingState>(spriteManager, window);

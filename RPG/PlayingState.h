@@ -11,6 +11,7 @@ public:
     void update(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
 
+    PlayingState& operator=(const PlayingState&) = delete;
 private:
     GameWorld gameWorld;
     Player player;

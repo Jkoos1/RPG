@@ -7,7 +7,7 @@ GameWorld::GameWorld(SpriteManager& spriteManager, Player& player)
     for (int y = 0; y < 20; y++) {
         for (int x = 0; x < 20; x++) {
             sf::Sprite tile = spriteManager.getTile("ground", x % 3, y % 3);
-            tile.setPosition(x * 32, y * 32);
+            tile.setPosition(static_cast<float>(x * 32), static_cast<float>(y * 32));
             tiles.push_back(tile);
         }
     }
